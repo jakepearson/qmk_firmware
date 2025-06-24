@@ -18,27 +18,31 @@
 #include "keychron_common.h"
 
 enum layers{
-	MAC_BASE,
-	WIN_BASE,
-	MAC_FN2,
-	MAC_FN3,
-	MAC_FN4,
+  MAC_BASE,
+  WIN_BASE,
+  MAC_FN2,
+  MAC_FN3,
+  MAC_FN4,
 };
-	
+
+enum custom_keycodes {
+    CMD_SHIFT_P = SAFE_RANGE,
+};
+  
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_69_ansi(
-        KC_GRAVE,  KC_1,	   KC_2,	 KC_3,	  KC_4,    KC_5,	KC_6,	  KC_7,    KC_8,	KC_9,	 KC_0,	   KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
-        KC_TAB,  KC_Q,	   KC_W,	 KC_E,	  KC_R,    KC_T,	KC_Y,	  KC_U,    KC_I,	KC_O,	 KC_P,	   KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_DEL,
-        ALL_T(KC_ESC), KC_A,	   KC_S,	 KC_D,	  KC_F,    KC_G,              KC_H,    KC_J,	KC_K,	 KC_L,	   KC_SCLN,  KC_QUOT,  KC_ENT,           KC_HOME,
-        KC_LSFT,           KC_Z,	 KC_X,	  KC_C,    KC_V,	KC_B,	  KC_B,    KC_N,	KC_M,	 KC_COMM,  KC_DOT,	 KC_SLSH,  KC_RSFT, KC_UP,
-        KC_LCTL, KC_LOPTN, KC_LCMMD, LALT_T(KC_SPC),  MT(MOD_LGUI | MOD_LSFT, KC_P), MO(MAC_FN3),       KC_SPC,            KC_RCMMD,           KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_GRAVE,      KC_1,     KC_2,   KC_3,    KC_4,    KC_5,  KC_6,    KC_7,    KC_8,  KC_9,   KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_MPLY,
+        KC_TAB,        KC_Q,     KC_W,   KC_E,    KC_R,    KC_T,  KC_Y,    KC_U,    KC_I,  KC_O,   KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_DEL,
+        ALL_T(KC_ESC), KC_A,     KC_S,   KC_D,     LGUI_T(KC_F),    KC_G,              KC_H, RGUI_T(KC_J),  KC_K,   KC_L,     KC_SCLN,  KC_QUOT,  KC_ENT,           KC_HOME,
+        KC_LSFT,           KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_B,    KC_N,  KC_M,   KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
+        KC_LCTL, KC_LOPTN, KC_LCMMD, LALT_T(KC_SPC),  CMD_SHIFT_P, MO(MAC_FN3),       KC_SPC,            KC_RCMMD,           KC_LEFT, KC_DOWN, KC_RGHT),
 
     [WIN_BASE] = LAYOUT_69_ansi(
-        KC_ESC,  KC_1,	   KC_2,	 KC_3,	  KC_4,    KC_5,	KC_6,	  KC_7,    KC_8,	KC_9,	 KC_0,	   KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
-        KC_TAB,  KC_Q,	   KC_W,	 KC_E,	  KC_R,    KC_T,	KC_Y,	  KC_U,    KC_I,	KC_O,	 KC_P,	   KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_DEL,
-        KC_CAPS, KC_A,	   KC_S,	 KC_D,	  KC_F,    KC_G,              KC_H,    KC_J,	KC_K,	 KC_L,	   KC_SCLN,  KC_QUOT,  KC_ENT,           KC_HOME,
-        KC_LSFT,           KC_Z,	 KC_X,	  KC_C,    KC_V,	KC_B,	  KC_B,    KC_N,	KC_M,	 KC_COMM,  KC_DOT,	 KC_SLSH,  KC_RSFT, KC_UP,
+        KC_ESC,  KC_1,     KC_2,   KC_3,    KC_4,    KC_5,  KC_6,    KC_7,    KC_8,  KC_9,   KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
+        KC_TAB,  KC_Q,     KC_W,   KC_E,    KC_R,    KC_T,  KC_Y,    KC_U,    KC_I,  KC_O,   KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_DEL,
+        KC_CAPS, KC_A,     KC_S,   KC_D,    KC_F,    KC_G,              KC_H,    KC_J,  KC_K,   KC_L,     KC_SCLN,  KC_QUOT,  KC_ENT,           KC_HOME,
+        KC_LSFT,           KC_Z,   KC_X,    KC_C,    KC_V,  KC_B,    KC_B,    KC_N,  KC_M,   KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
         KC_LCTL, KC_LWIN,  KC_LALT,           KC_SPC,           MO(MAC_FN3), MO(MAC_FN4),       KC_SPC,            KC_RALT,            KC_LEFT, KC_DOWN, KC_RGHT),
 
     [MAC_FN2] = LAYOUT_69_ansi(
@@ -50,13 +54,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [MAC_FN3] = LAYOUT_69_ansi(
         KC_GRV,  KC_BRID,  KC_BRIU,  KC_TASK, KC_FILE, RGB_VAD, RGB_VAI,  KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,          RGB_TOG,
-        _______, BT_HST1,  BT_HST2,  BT_HST3, P2P4G,   _______, _______,  _______, _______, _______, _______,  _______,	 _______,  _______,          KC_INS,
+        _______, BT_HST1,  BT_HST2,  BT_HST3, P2P4G,   _______, _______,  _______, _______, _______, _______,  _______,   _______,  _______,          KC_INS,
         _______, KC_F1,   KC_F2,    KC_F3,    KC_F4,   KC_F5,   KC_F6,             KC_F7,    KC_F8,   KC_F9,   KC_F10,   _______,  _______,          KC_END,
         _______,           RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD,  _______, NK_TOGG, _______, _______,  _______,  _______,  _______, KC_PGUP,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, KC_PGDN, _______),
 
     [MAC_FN4] = LAYOUT_69_ansi(
-        KC_TILD, KC_F1,    KC_F2,	 KC_F3,   KC_F4,   KC_F5,	KC_F6,	  KC_F7,   KC_F8,	KC_F9,	 KC_F10,   KC_F11,	 KC_F12,   _______,          _______,
+        KC_TILD, KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,    KC_F7,   KC_F8,  KC_F9,   KC_F10,   KC_F11,   KC_F12,   _______,          _______,
         _______, _______,  _______,  _______, _______, _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          _______,
         _______, _______,  _______,  _______, _______, _______,           _______, _______, _______, _______,  _______,  _______,  _______,          _______,
         _______,           _______,  _______, _______, _______, BAT_LVL,  BAT_LVL, _______, _______, _______,  _______,  _______,  _______, _______,
@@ -64,17 +68,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 #if defined(ENCODER_MAP_ENABLE)
-	const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-		[MAC_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-		[WIN_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-		[MAC_FN2]  = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
-		[MAC_FN3]  = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
-		[MAC_FN4]  = {ENCODER_CCW_CW(_______, _______)},
-	};
+  const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
+  [MAC_BASE] = {ENCODER_CCW_CW(KC_MPRV, KC_MNXT)},
+  [WIN_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+  [MAC_FN2]  = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
+  [MAC_FN3]  = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
+  [MAC_FN4]  = {ENCODER_CCW_CW(_______, _______)},
+  };
 #endif // ENCODER_MAP_ENABLE
 
 // clang-format on
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case CMD_SHIFT_P:
+            if (record->event.pressed) {
+                // Press Command + Shift + P
+                register_mods(MOD_BIT(KC_LGUI) | MOD_BIT(KC_LSFT));
+                register_code(KC_P);
+            } else {
+                // Release P and the modifiers
+                unregister_code(KC_P);
+                unregister_mods(MOD_BIT(KC_LGUI) | MOD_BIT(KC_LSFT));
+            }
+            return false; // Skip further processing
+    }
+
     if (!process_record_keychron_common(keycode, record)) {
         return false;
     }

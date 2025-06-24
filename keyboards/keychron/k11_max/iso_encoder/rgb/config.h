@@ -31,6 +31,8 @@
 // Enable rolling mod-taps on both hands (useful for split boards)
 #define TAPPING_FORCE_HOLD
 
+#define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_HEATMAP
+
 #ifdef RGB_MATRIX_ENABLE
 /* RGB Matrix driver configuration */
 #    define DRIVER_COUNT 2
